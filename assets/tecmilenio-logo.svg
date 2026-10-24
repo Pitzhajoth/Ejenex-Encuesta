@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="48 22 104 104" fill="none">
+  <!-- Isotipo Oficial Universidad Tecmilenio (trazo exacto 1:1 de la imagen proporcionada) -->
+  <g stroke="#29A444" stroke-width="7.4" stroke-linecap="butt" fill="none">
+    <!-- Tallo izquierdo (x=83.5) -> Arco inferior izquierdo (r=30.5) y Arco superior derecho (r=62.5) -->
+    <path d="M 83.5 121 L 83.5 91.5 A 30.5 30.5 0 0 0 53 61" />
+    <path d="M 83.5 91.5 A 62.5 62.5 0 0 1 147 29" />
+
+    <!-- Tallo central (x=100) -> Arco medio izquierdo (r=46.5) y Arco medio derecho (r=46.5) -->
+    <path d="M 100 121 L 100 91.5 A 46.5 46.5 0 0 0 53 45" />
+    <path d="M 100 91.5 A 46.5 46.5 0 0 1 147 45" />
+
+    <!-- Tallo derecho (x=116.5) -> Arco inferior derecho (r=30.5) y Arco superior izquierdo (r=62.5) -->
+    <path d="M 116.5 121 L 116.5 91.5 A 30.5 30.5 0 0 1 147 61" />
+    <path d="M 116.5 91.5 A 62.5 62.5 0 0 0 53 29" />
+  </g>
+</svg>

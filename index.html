@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TecmiGYM — Encuesta | EJENEX × Tecmilenio</title>
+  <link rel="icon" type="image/png" href="assets/ejenex-isotipo-cyan.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Barra de progreso superior en Cian Neón Fosfo -->
+  <div class="top-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="topProgressBarContainer">
+    <div class="top-progress-bar" id="topProgressFill"></div>
+  </div>
+
+  <!-- Navegación Superior -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-brand">
+        <img src="assets/ejenex-isotipo-cyan.png" alt="EJENEX" class="topbar-iso" />
+        <span class="brand-title">TecmiGYM</span>
+        <span class="brand-sep">/</span>
+        <span class="brand-sub">Grupo Estudiantil de Desarrollo de Software</span>
+      </div>
+
+      <div class="topbar-right">
+        <span class="progress-counter" id="progressCountText">0 de 8</span>
+
+        <nav class="nav-tabs" role="tablist" aria-label="Navegación">
+          <button type="button" class="nav-tab active" id="btnViewForm" role="tab" aria-selected="true">
+            Formulario
+          </button>
+          <button type="button" class="nav-tab" id="btnViewDashboard" role="tab" aria-selected="false">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lock-icon" id="navLockIcon">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Respuestas
+            <span class="response-pill" id="totalResponsesBadge">0</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ==================== VISTA 1: ENCUESTA ==================== -->
+    <section id="formView" class="view-section">
+      <!-- Cabecera Institucional -->
+      <header class="survey-header">
+        <div class="neon-top-line"></div>
+        <div class="logos-row">
+          <!-- Lockup Oficial EJENEX con "Grupo Estudiantil de Desarrollo de Software" en Cian Neón Fosfo -->
+          <div class="brand-lockup">
+            <img src="assets/ejenex-isotipo-cyan.png" alt="Isotipo EJENEX" class="lockup-iso lockup-iso--ejenex" />
+            <span class="ejenex-wordmark">EJENEX</span>
+            <span class="ejenex-subline">GRUPO ESTUDIANTIL DE DESARROLLO DE SOFTWARE</span>
+          </div>
+
+          <span class="logos-divider" aria-hidden="true"></span>
+
+          <!-- Lockup Oficial Universidad Tecmilenio con el isotipo proporcionado -->
+          <div class="brand-lockup">
+            <img src="assets/tecmilenio-logo.svg" alt="Isotipo Universidad Tecmilenio" class="lockup-iso lockup-iso--tecmi" />
+            <span class="tecmi-wordmark">TECMILENIO</span>
+            <span class="tecmi-subline">UNIVERSIDAD</span>
+          </div>
+        </div>
+
+        <div class="header-body">
+          <div class="header-kicker">EJENEX · GRUPO ESTUDIANTIL DE DESARROLLO DE SOFTWARE</div>
+          <h1 class="survey-title">Plataforma Digital <span class="text-neon">TecmiGYM</span></h1>
+          <p class="survey-description">
+            Desde el <strong>Grupo Estudiantil de Desarrollo de Software (EJENEX)</strong> estamos desarrollando una solución para consultar la disponibilidad del gimnasio en tiempo real y optimizar el acceso para la comunidad de <strong>Universidad Tecmilenio</strong>.
+          </p>
+          <p class="required-note">
+            <span>*</span> Todas las preguntas son obligatorias
+          </p>
+        </div>
+      </header>
+
+      <!-- Formulario -->
+      <form id="tecmiGymForm" novalidate>
+        <!-- DATOS DEL ESTUDIANTE (NOMBRE Y CORREO INSTITUCIONAL) -->
+        <section class="q-card" id="card-identity">
+          <div class="q-meta">Identificación · Estudiante Tecmilenio</div>
+          <h2 class="q-title">
+            Datos de registro <span class="req">*</span>
+          </h2>
+          <div class="identity-grid">
+            <div class="field-group" id="group-nombre">
+              <label for="inputNombre" class="field-label">Nombre completo <span class="req">*</span></label>
+              <input
+                type="text"
+                id="inputNombre"
+                name="nombre"
+                class="text-input"
+                placeholder="Ej. Mauricio Torres"
+                autocomplete="name"
+                required
+              />
+              <p class="field-error" id="errorNombre">Ingresa tu nombre completo.</p>
+            </div>
+
+            <div class="field-group" id="group-correo">
+              <label for="inputCorreo" class="field-label">Correo institucional <span class="req">*</span></label>
+              <input
+                type="email"
+                id="inputCorreo"
+                name="correo"
+                class="text-input"
+                placeholder="al00000000@tecmilenio.mx"
+                autocomplete="email"
+                required
+              />
+              <p class="field-error" id="errorCorreo">Ingresa un correo institucional válido (@tecmilenio.mx).</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 1 -->
+        <section class="q-card" data-question-id="q1" id="card-q1">
+          <div class="q-meta">Pregunta 01</div>
+          <h2 class="q-title">
+            ¿Te han puesto en lista de espera para entrar al gym? <span class="req">*</span>
+          </h2>
+          <div class="options-list options-list--inline" role="radiogroup" aria-labelledby="card-q1">
+            <label class="opt-item">
+              <input type="radio" name="q1" value="Sí" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Sí</span>
+            </label>
+            <label class="opt-item">
+              <input type="radio" name="q1" value="No" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">No</span>
+            </label>
+          </div>
+          <p class="q-error">Selecciona una opción para continuar.</p>
+        </section>
+
+        <!-- 2 -->
+        <section class="q-card" data-question-id="q2" id="card-q2">
+          <div class="q-meta">Pregunta 02</div>
+          <h2 class="q-title">
+            ¿Has perdido tu turno para entrar al Gym? <span class="req">*</span>
+          </h2>
+          <div class="options-list options-list--inline" role="radiogroup" aria-labelledby="card-q2">
+            <label class="opt-item">
+              <input type="radio" name="q2" value="Sí" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Sí</span>
+            </label>
+            <label class="opt-item">
+              <input type="radio" name="q2" value="No" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">No</span>
+            </label>
+          </div>
+          <p class="q-error">Selecciona una opción para continuar.</p>
+        </section>
+
+        <!-- 3 -->
+        <section class="q-card" data-question-id="q3" id="card-q3">
+          <div class="q-meta">Pregunta 03</div>
+          <h2 class="q-title">
+            ¿Te gustaría tener una aplicación para saber la disponibilidad del Gimnasio? <span class="req">*</span>
+          </h2>
+          <div class="options-list options-list--inline" role="radiogroup" aria-labelledby="card-q3">
+            <label class="opt-item">
+              <input type="radio" name="q3" value="Sí" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Sí</span>
+            </label>
+            <label class="opt-item">
+              <input type="radio" name="q3" value="No" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">No</span>
+            </label>
+          </div>
+          <p class="q-error">Selecciona una opción para continuar.</p>
+        </section>
+
+        <!-- 4 -->
+        <section class="q-card" data-question-id="q4" id="card-q4">
+          <div class="q-meta">Pregunta 04</div>
+          <h2 class="q-title">
+            ¿Qué preferirías: descargar una App o acceder por una Web para tu TecmiGym? <span class="req">*</span>
+          </h2>
+          <div class="options-list options-list--inline" role="radiogroup" aria-labelledby="card-q4">
+            <label class="opt-item">
+              <input type="radio" name="q4" value="App" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">App</span>
+            </label>
+            <label class="opt-item">
+              <input type="radio" name="q4" value="Web" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Web</span>
+            </label>
+          </div>
+          <p class="q-error">Selecciona una opción para continuar.</p>
+        </section>
+
+        <!-- 5 -->
+        <section class="q-card" data-question-id="q5" id="card-q5">
+          <div class="q-meta">Pregunta 05 · Horarios de mayor demanda · Opción múltiple</div>
+          <h2 class="q-title">
+            ¿En qué momento del día sueles intentar ir al gimnasio? <span class="req">*</span>
+          </h2>
+          <div class="options-list" role="group" aria-labelledby="card-q5">
+            <label class="opt-item">
+              <input type="checkbox" name="q5" value="Mañana antes de clases" />
+              <span class="check-mark"></span>
+              <span class="opt-text">Mañana antes de clases</span>
+            </label>
+            <label class="opt-item">
+              <input type="checkbox" name="q5" value="Al mediodía / Entre clases" />
+              <span class="check-mark"></span>
+              <span class="opt-text">Al mediodía / Entre clases</span>
+            </label>
+            <label class="opt-item">
+              <input type="checkbox" name="q5" value="En la tarde / Noche" />
+              <span class="check-mark"></span>
+              <span class="opt-text">En la tarde / Noche</span>
+            </label>
+          </div>
+          <p class="q-error">Selecciona al menos una opción.</p>
+        </section>
+
+        <!-- 6 -->
+        <section class="q-card" data-question-id="q6" id="card-q6">
+          <div class="q-meta">Pregunta 06 · Interés en gamificación</div>
+          <h2 class="q-title">
+            ¿Qué tipo de dinámica te motivaría más a mantener tus visitas al gimnasio? <span class="req">*</span>
+          </h2>
+          <div class="options-list" role="radiogroup" aria-labelledby="card-q6">
+            <label class="opt-item">
+              <input type="radio" name="q6" value="Competir en un ranking con amigos" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Competir en un ranking con amigos</span>
+            </label>
+            <label class="opt-item">
+              <input type="radio" name="q6" value="Ganar insignias digitales por rachas de asistencia" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Ganar insignias digitales por rachas de asistencia</span>
+            </label>
+            <label class="opt-item">
+              <input type="radio" name="q6" value="Ninguna / Prefiero entrenar solo" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Ninguna / Prefiero entrenar solo</span>
+            </label>
+          </div>
+          <p class="q-error">Selecciona una opción para continuar.</p>
+        </section>
+
+        <!-- 7 -->
+        <section class="q-card" data-question-id="q7" id="card-q7">
+          <div class="q-meta">Pregunta 07 · Tolerancia de espera</div>
+          <h2 class="q-title">
+            ¿Cuánto tiempo estarías dispuesto a esperar por tu turno si la aplicación te notifica que el gimnasio está lleno? <span class="req">*</span>
+          </h2>
+          <div class="options-list" role="radiogroup" aria-labelledby="card-q7">
+            <label class="opt-item">
+              <input type="radio" name="q7" value="Menos de 10 minutos" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Menos de 10 minutos</span>
+            </label>
+            <label class="opt-item">
+              <input type="radio" name="q7" value="Entre 10 y 20 minutos" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Entre 10 y 20 minutos</span>
+            </label>
+            <label class="opt-item">
+              <input type="radio" name="q7" value="Más de 20 minutos" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Más de 20 minutos</span>
+            </label>
+            <label class="opt-item">
+              <input type="radio" name="q7" value="Prefiero cancelar mi visita" required />
+              <span class="radio-mark"></span>
+              <span class="opt-text">Prefiero cancelar mi visita</span>
+            </label>
+          </div>
+          <p class="q-error">Selecciona una opción para continuar.</p>
+        </section>
+
+        <!-- 8 -->
+        <section class="q-card" data-question-id="q8" id="card-q8">
+          <div class="q-meta">Pregunta 08 · Funcionalidades clave · Opción múltiple</div>
+          <h2 class="q-title">
+            Además de conocer el aforo en tiempo real, ¿qué otra función consideras indispensable? <span class="req">*</span>
+          </h2>
+          <div class="options-list" role="group" aria-labelledby="card-q8">
+            <label class="opt-item">
+              <input type="checkbox" name="q8" value="Reservar aparatos o áreas específicas" />
+              <span class="check-mark"></span>
+              <span class="opt-text">Reservar aparatos o áreas específicas</span>
+            </label>
+            <label class="opt-item">
+              <input type="checkbox" name="q8" value="Recibir notificaciones push cuando se libere un lugar" />
+              <span class="check-mark"></span>
+              <span class="opt-text">Recibir notificaciones push cuando se libere un lugar</span>
+            </label>
+            <label class="opt-item">
+              <input type="checkbox" name="q8" value="Crear y guardar rutinas" />
+              <span class="check-mark"></span>
+              <span class="opt-text">Crear y guardar rutinas</span>
+            </label>
+          </div>
+          <p class="q-error">Selecciona al menos una opción.</p>
+        </section>
+
+        <!-- Acciones del formulario -->
+        <div class="form-footer">
+          <button type="submit" class="btn-primary" id="btnSubmitForm">
+            Enviar encuesta
+          </button>
+          <button type="button" class="btn-text" id="btnClearForm">
+            Borrar respuestas
+          </button>
+        </div>
+      </form>
+
+      <!-- Confirmación de envío -->
+      <div class="confirmation-card hidden" id="successStateCard">
+        <div class="check-circle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h2 class="confirmation-title">Respuesta registrada</h2>
+        <p class="confirmation-desc">
+          Gracias por tu tiempo. Tus respuestas han sido guardadas correctamente para el desarrollo de TecmiGYM por el Grupo Estudiantil de Desarrollo de Software.
+        </p>
+
+        <div class="summary-list" id="submittedSummaryBox"></div>
+
+        <div class="confirmation-actions">
+          <button type="button" class="btn-primary" id="btnNewResponse">
+            Enviar otra respuesta
+          </button>
+          <button type="button" class="btn-secondary" id="btnGoToDashboard">
+            Ver respuestas (PIN)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VISTA 2: RESPUESTAS (PROTEGIDA POR PIN 2026) ==================== -->
+    <section id="dashboardView" class="view-section hidden">
+      <div class="admin-header">
+        <div class="admin-header-main">
+          <div>
+            <span class="admin-badge">EJENEX · Grupo Estudiantil de Desarrollo de Software</span>
+            <h2 class="admin-title">Resultados de la Encuesta</h2>
+            <p class="admin-subtitle">Resumen estadístico de las respuestas registradas.</p>
+          </div>
+          <div class="admin-stat">
+            <span class="admin-stat-num" id="kpiTotalCount">0</span>
+            <span class="admin-stat-label">Respuestas</span>
+          </div>
+        </div>
+
+        <div class="admin-actions">
+          <button type="button" class="btn-secondary" id="btnExportCSV">
+            Exportar CSV
+          </button>
+          <button type="button" class="btn-secondary" id="btnSeedDemoData">
+            Cargar datos de prueba
+          </button>
+          <button type="button" class="btn-danger-ghost" id="btnResetAllData">
+            Limpiar base de datos
+          </button>
+          <button type="button" class="btn-text ml-auto" id="btnLockSession">
+            Bloquear acceso
+          </button>
+        </div>
+      </div>
+
+      <div id="chartsContainer" class="results-list"></div>
+
+      <!-- Tabla de Estudiantes Registrados -->
+      <div class="participants-card">
+        <div class="participants-header">
+          <h3 class="chart-card-title">Registro de Participantes</h3>
+          <span class="participants-sub">Nombre y correo institucional de quienes respondieron</span>
+        </div>
+        <div class="table-wrap">
+          <table class="participants-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre completo</th>
+                <th>Correo institucional</th>
+                <th>Plataforma (Q4)</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="participantsTableBody">
+              <tr>
+                <td colspan="5" class="empty-table-msg">Aún no hay respuestas registradas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== MODAL DE ACCESO CON PIN (2026) ==================== -->
+  <div class="modal-backdrop hidden" id="pinModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="pinModalTitle">
+    <div class="pin-modal" id="pinModalCard">
+      <div class="pin-modal-header">
+        <div class="pin-icon-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <button type="button" class="modal-close" id="btnClosePinModal" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <h3 class="pin-modal-title" id="pinModalTitle">Acceso restringido</h3>
+      <p class="pin-modal-desc">Ingresa el PIN de seguridad para consultar las respuestas de la encuesta.</p>
+
+      <form id="pinForm" novalidate>
+        <div class="pin-inputs" id="pinInputsContainer">
+          <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" data-index="0" aria-label="Dígito 1" autocomplete="off" />
+          <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" data-index="1" aria-label="Dígito 2" autocomplete="off" />
+          <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" data-index="2" aria-label="Dígito 3" autocomplete="off" />
+          <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" data-index="3" aria-label="Dígito 4" autocomplete="off" />
+        </div>
+        <p class="pin-error hidden" id="pinErrorMsg">PIN incorrecto. Verifica e intenta nuevamente.</p>
+
+        <div class="pin-modal-actions">
+          <button type="submit" class="btn-primary btn-full">Desbloquear resultados</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brands">
+        <span class="text-neon">EJENEX</span>
+        <span class="dot">·</span>
+        <span>Grupo Estudiantil de Desarrollo de Software</span>
+        <span class="dot">×</span>
+        <span>Universidad Tecmilenio</span>
+      </div>
+      <div class="footer-credits">
+        Desarrollado y diseñado por
+        <a href="https://atomstech.info" target="_blank" rel="noopener noreferrer" class="atoms-link">
+          Atoms Technologies
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notificación discreta -->
+  <div id="toastNotification" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
